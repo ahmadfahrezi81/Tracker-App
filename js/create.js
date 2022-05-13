@@ -9,15 +9,19 @@ export function createBox() {
     const accordianItem = document.createElement("div");
     const input = document.querySelector("#inputText");
 
+    // if there is nothing in the input
     if (input.value.length === 0) {
+        const errMsgBox = document.querySelector("#errMsgBox");
         const closeErrMsg = document.querySelector("#errCloseButton");
         errMsg.innerHTML =
             "Your stopwatch begs you to give it a name as it cries in despair. &#128557";
-        closeErrMsg.style.display = "block";
+        errMsgBox.style.visibility = "visible";
+
+        
 
         closeErrMsg.addEventListener("click", () => {
             errMsg.innerHTML = "";
-            closeErrMsg.style.display = "none";
+            errMsgBox.style.visibility = "hidden";
         });
     } else {
         accordianItem.classList.add("accordian-item");
