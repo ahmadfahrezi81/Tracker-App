@@ -80,6 +80,8 @@ div#errMsgBox{
 
 #errMsg{
     font-size: 0.8rem;
+    display: grid;
+    place-items: center;
 }
 
 #errCloseButton{
