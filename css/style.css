@@ -400,6 +400,10 @@ background: #4b6af4;
     #input-generate-container > *{
         margin-bottom: 0.5em;
     }
+    
+    #inputText{
+        margin: 10px 0;
+    }
 
     button#generate{
         padding: 10px 25vw;
@@ -411,11 +415,13 @@ background: #4b6af4;
     }
 
     .item-head-display > h1{
-        font-size: 1.2em;
+        font-size: 2.2em;
+        margin: 10px;
     }
 
     .item-head-display > p{
-        font-size: 10px;
+        font-size: 14px;
+        margin-top: 0px;
     }
 
     .item-head-display > p > span{
@@ -453,8 +459,13 @@ background: #4b6af4;
 
 
 @media (max-width: 576px) {
+    button#generate {
+        padding: 10px 0;
+        width: 82vw;
+    }
+
     .item-head-display{
-        width: 66vw;
+        width: 80vw;
     }
     
     .accordian-body-display{
