@@ -83,8 +83,48 @@ export function reset(displayName, savedDisplayName, num) {
     }
 
     elapsedTime[num] = 0;
-    //check if alive
+
+    //check if alive | for red small logo
     isAlive();
+}
+
+//add time ***this only work for the first item only
+export function addTime(num) {
+    let totalSaveDisplay = document.querySelector("#totalSaved");
+    let savedDisplay = document.querySelector(`.savedDisplay${num}`);
+
+    if (savedDisplay) {
+        let timeToAdd = 1000 * 60 * 15; //15min to add
+
+        if (timeSaved[num] === undefined) {
+            //if time is empty
+            timeSaved[num] = timeToAdd;
+            totalTimeSaved += timeToAdd;
+        } else {
+            timeSaved[num] += timeToAdd;
+            totalTimeSaved += timeToAdd;
+        }
+        savedDisplay.innerHTML = timeToString(timeSaved[num]);
+        totalSaveDisplay.innerHTML = timeToString(totalTimeSaved);
+    }
+}
+
+//reduce time
+export function reduceTime(num) {
+    let totalSaveDisplay = document.querySelector("#totalSaved");
+    let savedDisplay = document.querySelector(`.savedDisplay${num}`);
+
+    if (savedDisplay) {
+        let timeToSub = 1000 * 60 * 15; //15min to reduce
+
+        if (timeSaved[num] >= timeToSub) {
+            //if time is empty
+            timeSaved[num] -= timeToSub;
+            totalTimeSaved -= timeToSub;
+            savedDisplay.innerHTML = timeToString(timeSaved[num]);
+            totalSaveDisplay.innerHTML = timeToString(totalTimeSaved);
+        }
+    }
 }
 
 //change icon when pause or play for all below this line
@@ -103,6 +143,7 @@ const changeFavicon = (link) => {
     }
 };
 
+// for the red small logo
 function isAlive() {
     if (elapsedTime > tempElapsedArray) {
         changeFavicon("image/timer2.png");
