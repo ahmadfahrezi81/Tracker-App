@@ -55,6 +55,7 @@ export function createBox() {
                             <textarea id="text-val" name="" id="" cols="55" rows="8" placeholder="Write notes here"
                             onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'    '+v.substring(e);this.selectionStart=this.selectionEnd=s+4;return false;}"
                             ></textarea>
+                            <button id="exp-btn"><i class="fa-solid fa-maximize"></i></button>
                             <button id="dwn-btn"><i class="fa-solid fa-download"></i></button>
                         </div>
                     </div>

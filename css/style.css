@@ -52,12 +52,18 @@ input:focus{
 }
 
 button#generate{
-    padding: 10px 11vw;
+    padding: 10px 12vw;
     border: 5px solid black;
     background-color: white;
     transition: all 0.2s ease-in-out;
     border-radius: 0.3rem;
     cursor: pointer;
+    font-size: 1.2em;
+}
+
+.fa-list-check:before,
+.fa-tasks:before {
+    font-size: 0.7em;
 }
 
 button#generate:hover{
@@ -68,6 +74,7 @@ button#generate:hover{
 button#generate:focus{
     box-shadow: 5px 5px gold;
 }
+
 div#heading{
     display: flex;
     justify-content: space-between;
@@ -203,11 +210,11 @@ div#errMsgBox{
 }
 
 .stopwatch-buttons > button{
-    border: black solid 3px;
+    border: black solid 2px;
     background-color: white;
     font-size: 1.2em;
     font-weight: 700;
-    padding: 5px;
+    padding: 6px 5px;
     width: 8em;
     /* width: 5.5em; */
     cursor: pointer;
@@ -217,16 +224,18 @@ div#errMsgBox{
     display: block;
     background-color: #59F44B;
     border-radius: 0.3rem;
+    transition: all 0.2s ease-in;
 }
-
-/* .stopwatch-buttons > button.pauseButton{
-    display: none;
-    background-color: #F4554B;
-} */
 
 .stopwatch-buttons > button.resetButton{
     background-color: #F4ED4B;
     border-radius: 0.3rem;
+    transition: all 0.2s ease-in;
+}
+
+.stopwatch-buttons > button:hover{
+    transform: translateY(-3px);
+    box-shadow: 1.5px 2px black;
 }
 
 .item-body-textarea{
@@ -244,18 +253,6 @@ div#errMsgBox{
     box-sizing: border-box;
 }
 
-.item-body-textarea > button{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    height: 25px;
-    width: 25px;
-    border: none;
-    cursor: pointer;
-}
-
 .delete{
     width: 5vw;
     display: flex;
@@ -265,9 +262,14 @@ div#errMsgBox{
 }
 
 .delete-icon{
-    font-size: 2em;
+    font-size: 1.9em;
     color: #FF4646;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.delete-icon:hover{
+    transform: scale(1.1);
 }
 
 /* side logo fixed thingy */
@@ -420,7 +422,7 @@ background: #4b6af4;
     }
 
     button#generate{
-        padding: 10px 25vw;
+        padding: 10px 20vw;
     }
 
     .item-head-display{

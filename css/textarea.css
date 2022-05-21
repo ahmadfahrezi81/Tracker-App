@@ -1,1 +1,26 @@
 /* this will be usefull for later when I need to expand */
+
+#dwn-btn {
+    bottom: 0;
+    margin-bottom: 10px;
+}
+
+#exp-btn {
+    top: 0;
+    margin-top: 10px;
+}
+
+.item-body-textarea > button {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.item-body-textarea>button:hover {
+    border-radius: 50%;
+}
