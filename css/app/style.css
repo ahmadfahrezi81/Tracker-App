@@ -284,7 +284,7 @@ div#errMsgBox{
     justify-content: center;
     align-items: center;
     border-radius: 5px 0 0 5px;
-    transition: width 0.1s ease-out;
+    transition: width 0.2s ease-out;
 }
 
 .side-logo p{
@@ -295,20 +295,21 @@ div#errMsgBox{
 
 .side-logo:hover p{
     display: block;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
+    margin-left: 10px;
 }
 
 .side-logo:hover{
     width: 110px;
 }
 
-.side-logo:hover .fa-cat{
-    margin-left: 5px;
+.side-logo:hover .fa-house{
+    margin-left: 2px;
     color: white;
 }
 
-.fa-cat{
-    font-size: 2em;
+.fa-house{
+    font-size: 1.4em;
     color: #F4D54B;
 }
 
