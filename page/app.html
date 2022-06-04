@@ -5,15 +5,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tracker App</title>
-        <link rel="stylesheet" href="css/app/style.css" />
-        <link rel="stylesheet" href="css/app/rightMenu.css" />
-        <link rel="stylesheet" href="css/app/textarea.css" />
+        <link rel="stylesheet" href="../css/app/style.css" />
+        <link rel="stylesheet" href="../css/app/rightMenu.css" />
+        <link rel="stylesheet" href="../css/app/textarea.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         />
         <link rel="icon" type="image/png" href="image/timer.png" />
-        <script type="module" src="js/main.js" defer></script>
+        <script type="module" src="../js/main.js" defer></script>
     </head>
     <body>
         <div id="container">
@@ -32,6 +32,7 @@
                         maxlength="25"
                         placeholder="Enter task name"
                         required="required"
+                        autocomplete="off"
                     />
                     <button id="generate">
                         <i class="fa-solid fa-list-check"></i> start task
@@ -47,7 +48,7 @@
             </div>
             <div class="module-container unselectable"></div>
         </div>
-        <a href="index.html" id="link-block">
+        <a href="../index.html" id="link-block">
             <div class="side-logo">
                 <i class="fa-solid fa-house"></i>
                 <p>Home</p>

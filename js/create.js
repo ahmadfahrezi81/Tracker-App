@@ -217,6 +217,9 @@ function rightClickMenu() {
             menu.id = "ctxmenu";
             menu.style = `top:${e.pageY - 10}px;left:${e.pageX - 40}px`;
             menu.onmouseleave = () => (ctxmenu.outerHTML = "");
+
+            // console.log(document.getElementById("ctxmenu"));
+
             menu.innerHTML = `
                     <p id="subTime"><span>Reduce</span><span>-15min</span></p>
                     <p id="addTime"><span>Add</span><span>+15min</span></p>
