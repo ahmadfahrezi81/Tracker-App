@@ -146,9 +146,9 @@ const changeFavicon = (link) => {
 // for the red small logo
 function isAlive() {
     if (elapsedTime > tempElapsedArray) {
-        changeFavicon("image/timer2.png");
+        changeFavicon("../image/timer2.png");
     } else {
-        changeFavicon("image/timer.png");
+        changeFavicon("../image/timer.png");
     }
     tempElapsedArray = [...elapsedTime];
 }
