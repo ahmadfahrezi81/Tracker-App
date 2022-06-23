@@ -4,10 +4,11 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tracker App</title>
+        <title>ATASK | Track Your Day</title>
         <link rel="stylesheet" href="../css/app/style.css" />
         <link rel="stylesheet" href="../css/app/rightMenu.css" />
         <link rel="stylesheet" href="../css/app/textarea.css" />
+        <link rel="stylesheet" href="../css/app/instruction.css" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
@@ -19,7 +20,9 @@
         <div id="container">
             <div id="input-container">
                 <div id="heading">
-                    <p id="title-logo" onclick="add()">Tracker app</p>
+                    <p id="title-logo" onclick="add()">
+                        ATASK | Track Your Day
+                    </p>
                     <p id="totalSavedPrg">
                         total time tracked:
                         <span id="totalSaved">00:00:00</span>
@@ -46,7 +49,16 @@
                     ></span>
                 </div>
             </div>
-            <div class="module-container unselectable"></div>
+            <div class="module-container unselectable">
+                <h4 style="margin-top: 100px">
+                    Please 'Enter task name' and
+                    <i
+                        class="fa-solid fa-list-check"
+                        style="font-size: 1.3em"
+                    ></i>
+                    start task
+                </h4>
+            </div>
         </div>
         <a href="../index.html" id="link-block">
             <div class="side-logo">
@@ -54,5 +66,41 @@
                 <p>Home</p>
             </div>
         </a>
+        <!-- This is the instruction button -->
+        <section>
+            <button class="help" title="instruction" onclick="onOverlay()">
+                <i class="fa-solid fa-chalkboard-user"></i>
+            </button>
+            <div id="overlay" class="unselectable" onclick="offOverlay()">
+                <h1>Instruction</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sequi ad corrupti perferendis quaerat provident, sapiente
+                    sint possimus consequuntur soluta magni, explicabo
+                    necessitatibus aliquam, ex mollitia! Recusandae dolor
+                    aperiam inventore velit!
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Sequi ad corrupti perferendis quaerat provident, sapiente
+                    sint possimus consequuntur soluta magni, explicabo
+                    necessitatibus aliquam, ex mollitia! Recusandae dolor
+                    aperiam inventore velit!
+                </p>
+
+                <p class="message_close">Click anywhere to close instruction</p>
+            </div>
+        </section>
+
+        <script>
+            //this is for overlay
+            function onOverlay() {
+                document.getElementById("overlay").style.display = "block";
+            }
+
+            function offOverlay() {
+                document.getElementById("overlay").style.display = "none";
+            }
+        </script>
     </body>
 </html>

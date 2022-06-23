@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/kute.js/2.1.2/kute.min.js"
+            integrity="sha512-uTe+wUbchHcZHwvZwpVt4ve3FdUJPse9iC56mh6pZkxHccXx2vaSYyjlWV/Mv0NTcvGYkGZvCi1D/KZJ7qS2uQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <style>
+            body {
+                background-color: aliceblue;
+            }
+
+            .help {
+                padding: 10px;
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+            }
+
+            .help > i {
+                font-size: 2em;
+                color: black;
+            }
+
+            #overlay {
+                position: fixed;
+                display: none;
+                width: 50%;
+                height: 80%;
+                top: 10%;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: 0 auto;
+                background-color: white;
+                z-index: 2;
+                padding: 30px 40px;
+                border-radius: 10px 10px 0 0;
+                border: 2px solid;
+            }
+
+            #overlay > textarea {
+                width: 100%;
+                resize: vertical;
+            }
+
+            .close {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="overlay" class="unselec">
+            <h2>Hello</h2>
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <button class="close" onclick="off()">close</button>
+        </div>
+        <section>
+            <button class="help" onclick="on()">
+                <i class="fa-solid fa-circle-info"></i>
+            </button>
+        </section>
+        <script>
+            function on() {
+                document.getElementById("overlay").style.display = "block";
+            }
+
+            function off() {
+                document.getElementById("overlay").style.display = "none";
+            }
+        </script>
+    </body>
+</html>

@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Tracker App</title>
+        <title>ATASK | Track Your Day</title>
         <link rel="stylesheet" href="./css/nav/nav.css" />
         <link rel="stylesheet" href="./css/home/style.css" />
         <link
@@ -14,7 +14,13 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <link rel="icon" type="image/png" href="../image/timer.png" />
+        <link rel="icon" type="image/png" href="./image/timer.png" />
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/kute.js/2.1.2/kute.min.js"
+            integrity="sha512-uTe+wUbchHcZHwvZwpVt4ve3FdUJPse9iC56mh6pZkxHccXx2vaSYyjlWV/Mv0NTcvGYkGZvCi1D/KZJ7qS2uQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
     </head>
     <body>
         <div class="wrapper">
@@ -60,6 +66,11 @@
 
             <div class="heroWrapper">
                 <div class="heroLeft">
+                    <img
+                        class="bubble"
+                        src="./image/Vector.png"
+                        alt="yellow bubble"
+                    />
                     <h1><span>Track your day</span> <span>Atask</span></h1>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -67,7 +78,7 @@
                         nunc.
                     </p>
                     <div>
-                        <a href="app.html" id="appHeroBtn"
+                        <a href="./page/app.html" id="appHeroBtn"
                             >App<i class="fa-solid fa-stopwatch"></i
                         ></a>
                         <a href="./page/features.html" id="appHeroLearnMore">
@@ -77,9 +88,44 @@
                     </div>
                 </div>
                 <div class="heroRight">
-                    <img src="./image/SVG phone.svg" alt="phone" />
+                    <svg
+                        class="blob_motion"
+                        width="530"
+                        height="530"
+                        viewBox="0 0 720 600"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            id="blob1"
+                            d="M388.747 9.6457C477.874 41.3213 545.336 126.525 557.061 220.371C567.536 304.21 492.355 364.301 441.489 431.77C391.594 497.952 354.758 584.633 272.85 597.354C182.678 611.358 87.5491 568.689 33.5772 495.119C-16.7369 426.535 -1.17046 335.286 20.1946 252.956C39.3715 179.058 79.3391 115.302 143.059 73.2357C217.331 24.2025 304.885 -20.1587 388.747 9.6457Z"
+                            fill="#5D68FF"
+                        />
+                        <path
+                            style="visibility: hidden"
+                            id="blob2"
+                            d="M535.095 7.93441C608.64 44.8875 588.414 157.747 585.679 240.009C583.628 301.688 550.192 351.449 521.85 406.269C486.335 474.961 475.96 571.17 402.299 594.703C326.55 618.903 255.556 554.7 187.865 512.968C114.614 467.809 17.3442 432.755 2.20707 348.044C-12.9055 263.471 52.1459 183.059 119.348 129.533C171.848 87.7178 246.658 120.877 311.077 102.035C391.889 78.3989 459.86 -29.8673 535.095 7.93441Z"
+                        />
+                    </svg>
+                    <img
+                        src="./image/SVG phone2.svg"
+                        alt="phone"
+                        class="phone_svg"
+                    />
                 </div>
             </div>
         </div>
+        <script>
+            //This is for the blob motion
+            const tween = KUTE.fromTo(
+                "#blob1",
+                { path: "#blob1" },
+                { path: "#blob2" },
+
+                { repeat: 999, duration: 1500, yoyo: true }
+            );
+
+            tween.start();
+        </script>
     </body>
 </html>

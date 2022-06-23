@@ -1,5 +1,6 @@
+import { accordian } from "./accordian.js";
 import { start, pause, reset, addTime, reduceTime } from "./stopwatch.js";
-import { txtDownload } from "./textarea.js";
+import { txtDownload, expandTxtArea, shrinkTxtArea } from "./textarea.js";
 
 const generateButton = document.querySelector("#generate");
 const container = document.querySelector(".module-container");
@@ -23,6 +24,12 @@ export function createBox() {
             errMsgBox.style.visibility = "hidden";
         });
     } else {
+        //remove the message text
+        if (container.firstElementChild.tagName == "H4") {
+            container.firstElementChild.style.display = "none";
+        }
+        //below is the original
+
         accordianItem.classList.add("accordian-item");
 
         //this is testing the local storage
@@ -52,11 +59,16 @@ export function createBox() {
                             </div>
                         </div>
                         <div class="item-body-textarea">
-                            <textarea id="text-val" name="" id="" cols="55" rows="8" placeholder="Write notes here"
-                            onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'    '+v.substring(e);this.selectionStart=this.selectionEnd=s+4;return false;}"
-                            ></textarea>
-                            <button id="exp-btn"><i class="fa-solid fa-maximize"></i></button>
-                            <button id="dwn-btn"><i class="fa-solid fa-download"></i></button>
+                            <div class="textarea-overlay hidden" id="test-overlay">
+                                <h1 class="textarea-overlay-title">${input.value} | notes</h1>
+                                <textarea class="textarea" id="text-val" cols="55" rows="8" placeholder="Write notes here"
+                                onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'    '+v.substring(e);this.selectionStart=this.selectionEnd=s+4;return false;}"
+                                ></textarea>
+                                <button id="exp-btn"><i class="fa-solid fa-maximize"></i></button>
+                                <button id="shrk-btn" class="btn-hidden"><i class="fa-solid fa-minimize"></i></button>
+                                <button id="dwn-btn"><i class="fa-solid fa-download"></i></button>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="delete">
@@ -142,6 +154,11 @@ function deleteaccordianItem(displayNum, savedDisplayNum, deleteNum) {
                 `${displayNum}`.slice(-1)
             );
         }
+
+        //print the instruction if all is deleted
+        if (container.firstElementChild.tagName == "H4") {
+            container.firstElementChild.style.display = "block";
+        }
     });
 }
 
@@ -168,6 +185,11 @@ function allStuff() {
 
     //start text download
     txtDownload();
+
+    //experiment for expand txtarea
+    expandTxtArea();
+    shrinkTxtArea();
+    //until here
 
     count++;
 }

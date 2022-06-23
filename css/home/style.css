@@ -25,6 +25,7 @@ a{
     margin: 0 auto;
     /* background-color: #F4D54B; */
     height: 100%;
+    padding: 0 50px;
 }
 
 .heroWrapper{
@@ -34,6 +35,18 @@ a{
     grid-template-columns: 1fr 1fr;
     gap: 5em;
     padding-top: 2.5em;
+}
+
+.heroLeft{
+    margin-top: 80px;
+}
+
+.heroLeft > .bubble {
+    position: absolute;
+    z-index: -2;
+    top: 32%;
+    width: 320px;
+    left: 0%;
 }
 
 .heroLeft > h1{
@@ -65,6 +78,19 @@ a{
     display: flex;
     align-items: center;
 }
+
+.heroRight > .blob_motion{
+    position: absolute;
+        z-index: -2;
+        left: 51%;
+        top: 32%;
+}
+
+.heroRight > .phone_svg {
+    width: 310px;
+    margin-left: 50px;
+}
+
 
 #appHeroBtn {
     background-color: black;
