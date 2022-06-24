@@ -59,14 +59,14 @@ export function createBox() {
                             </div>
                         </div>
                         <div class="item-body-textarea">
-                            <div class="textarea-overlay hidden" id="test-overlay">
-                                <h1 class="textarea-overlay-title">${input.value} | notes</h1>
-                                <textarea class="textarea" id="text-val" cols="55" rows="8" placeholder="Write notes here"
+                            <div class="textarea-overlay txtarea-overlay-hidden" data-id="${count}">
+                                <h1 data-id="${count}" class="textarea-overlay-title textarea-overlay-title-hidden">${input.value} | notes</h1>
+                                <textarea class="textarea" data-id="text-val${count}" cols="55" rows="8" placeholder="Write notes here"
                                 onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'    '+v.substring(e);this.selectionStart=this.selectionEnd=s+4;return false;}"
                                 ></textarea>
-                                <button id="exp-btn"><i class="fa-solid fa-maximize"></i></button>
-                                <button id="shrk-btn" class="btn-hidden"><i class="fa-solid fa-minimize"></i></button>
-                                <button id="dwn-btn"><i class="fa-solid fa-download"></i></button>
+                                <button class="exp-btn" data-id="${count}"><i class="fa-solid fa-maximize"></i></button>
+                                <button class="shrk-btn btn-hidden" data-id="${count}"><i class="fa-solid fa-minimize"></i></button>
+                                <button class="dwn-btn" data-id="${count}"><i class="fa-solid fa-download"></i></button>
                             </div>
                             
                         </div>
@@ -184,11 +184,11 @@ function allStuff() {
     rightClickMenu();
 
     //start text download
-    txtDownload();
+    txtDownload(count);
 
     //experiment for expand txtarea
-    expandTxtArea();
-    shrinkTxtArea();
+    expandTxtArea(count);
+    shrinkTxtArea(count);
     //until here
 
     count++;

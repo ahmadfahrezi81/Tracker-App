@@ -15,12 +15,16 @@ function download(filename, text) {
 }
 
 //start download
-export function txtDownload() {
-    document.getElementById("dwn-btn").addEventListener(
+export function txtDownload(dataID) {
+    const dwnButton = document.querySelector(`.dwn-btn[data-id="${dataID}"]`);
+
+    dwnButton.addEventListener(
         "click",
         () => {
             // Generate download of hello.txt file with some content
-            let text = document.getElementById("text-val").value;
+            let text = document.querySelector(
+                `.textarea[data-id = "text-val${dataID}"]`
+            ).value;
             let filename = prompt("Enter file name to download: ");
 
             if (filename !== null) {
@@ -31,54 +35,69 @@ export function txtDownload() {
     );
 }
 
-export function expandTxtArea() {
-    const expButton = document.getElementById("exp-btn");
-    const shrkButton = document.getElementById("shrk-btn");
-    const dwnButton = document.getElementById("dwn-btn");
+export function expandTxtArea(dataID) {
+    const expButton = document.querySelector(`.exp-btn[data-id="${dataID}"]`);
+    const shrkButton = document.querySelector(`.shrk-btn[data-id="${dataID}"]`);
+    const dwnButton = document.querySelector(`.dwn-btn[data-id="${dataID}"]`);
+    const textareaOverlay = document.querySelector(
+        `.textarea-overlay[data-id="${dataID}"]`
+    );
 
     if (expButton != null) {
         expButton.addEventListener(
             "click",
             () => {
-                document.getElementById("test-overlay").classList.add("show");
-                document
-                    .getElementById("test-overlay")
-                    .classList.remove("hidden");
+                console.log(expButton);
+
+                textareaOverlay.classList.add("txtarea-overlay-show");
+                textareaOverlay.classList.remove("txtarea-overlay-hidden");
                 expButton.classList.add("btn-hidden");
                 shrkButton.classList.remove("btn-hidden");
+                dwnButton.classList.remove("dwn-btn");
                 dwnButton.classList.add("dwn-btn-big");
+                document
+                    .querySelector(
+                        `.textarea-overlay-title[data-id="${dataID}"]`
+                    )
+                    .classList.remove("textarea-overlay-title-hidden");
                 document.querySelector(
-                    ".textarea-overlay-title"
-                ).style.display = "block";
-                document.querySelector(".textarea").style.cssText =
-                    "padding: 15px 6% 15px 20px; font-size: 1.2em;";
+                    `.textarea[data-id="text-val${dataID}"]`
+                ).style.cssText =
+                    "padding: 15px 50px 15px 20px; font-size: 1.2em;";
             },
             false
         );
     }
 }
 
-export function shrinkTxtArea() {
-    const shrkButton = document.getElementById("shrk-btn");
-    const expButton = document.getElementById("exp-btn");
-    const dwnButton = document.getElementById("dwn-btn");
+export function shrinkTxtArea(dataID) {
+    const expButton = document.querySelector(`.exp-btn[data-id="${dataID}"]`);
+    const shrkButton = document.querySelector(`.shrk-btn[data-id="${dataID}"]`);
+    const dwnButton = document.querySelector(`.dwn-btn[data-id="${dataID}"]`);
+    const textareaOverlay = document.querySelector(
+        `.textarea-overlay[data-id="${dataID}"]`
+    );
 
     if (shrkButton != null) {
         shrkButton.addEventListener(
             "click",
             () => {
-                document.getElementById("test-overlay").classList.add("hidden");
-                document
-                    .getElementById("test-overlay")
-                    .classList.remove("show");
+                console.log(shrkButton);
+                textareaOverlay.classList.remove("txtarea-overlay-show");
+                textareaOverlay.classList.add("txtarea-overlay-hidden");
                 shrkButton.classList.add("btn-hidden");
                 expButton.classList.remove("btn-hidden");
+                dwnButton.classList.add("dwn-btn");
                 dwnButton.classList.remove("dwn-btn-big");
+                document
+                    .querySelector(
+                        `.textarea-overlay-title[data-id="${dataID}"]`
+                    )
+                    .classList.add("textarea-overlay-title-hidden");
                 document.querySelector(
-                    ".textarea-overlay-title"
-                ).style.display = "none";
-                document.querySelector(".textarea").style.cssText =
-                    "padding: 10px 8% 10px 10px; font-size: 1em;";
+                    `.textarea[data-id="text-val${dataID}"]`
+                ).style.cssText =
+                    "padding: 10px 40px 10px 10px; font-size: 1.0em;";
             },
             false
         );

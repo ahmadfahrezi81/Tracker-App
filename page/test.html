@@ -70,7 +70,13 @@
                 <i class="fa-solid fa-circle-info"></i>
             </button>
         </section>
+        <section>
+            <h1 class="h1" data-id="1">hello</h1>
+            <p class="p" data-id="1">hello</p>
+        </section>
         <script>
+            document.querySelector('.h1[data-id= "1"]').innerHTML = "change";
+
             function on() {
                 document.getElementById("overlay").style.display = "block";
             }

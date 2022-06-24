@@ -1,25 +1,45 @@
+.item-body-textarea {
+    /* padding-right: 3vw; */
+    position: relative;
+}
+
+.item-body-textarea>.textarea-overlay>.textarea {
+    border: black solid 3px;
+    resize: none;
+    width: 100%;
+    height: 80%;
+    border-radius: 0.3rem;
+    padding: 10px;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.item-body-textarea>.textarea-overlay>.textarea:focus {
+    border-color: rgb(58, 58, 173);
+    outline: none;
+}
+
+
 /* this will be usefull for later when I need to expand */
 
-#exp-btn {
+.exp-btn {
     top: 0;
     margin-top: 10px;
 }
 
-#shrk-btn {
+.shrk-btn {
     top: 0;
     margin-top: 115px;
-    margin-right: 90px;
-    height: 30px;
-    width: 30px;
+    margin-right: 90px !important;
+    height: 30px !important;
+    width: 30px !important;
 }
 
-#shrk-btn > i{
-    font-size: 1.2em;
+.shrk-btn > i{
+    font-size: 1.2em !important;
 }
 
-
-
-#dwn-btn {
+.dwn-btn {
     bottom: 0;
     margin-bottom: 10px;
 }
@@ -44,12 +64,10 @@
     border-radius: 5px;
 }
 
-.hidden{
+.txtarea-overlay-hidden{
     visibility: hidden;
 }
-
-/* experiment */
-.show{
+.txtarea-overlay-show{
     position: fixed;
     visibility: visible;
     width: 80%;
@@ -64,7 +82,6 @@
     border-bottom: none;
     border-radius: 10px 10px 0 0;
     z-index: 2;
-    cursor: pointer;
     padding: 20px 80px 50px 80px;
     margin-bottom: 100px;
     box-sizing: border-box;
@@ -75,7 +92,8 @@
 }
 
 .dwn-btn-big{
-    margin-bottom: 65px !important;
+    bottom: 0;
+    margin-bottom: 65px;
     margin-right: 90px !important;
     height: 30px !important;
     width: 30px !important;
@@ -85,6 +103,6 @@
     font-size: 1.2em !important;
 }
 
-.textarea-overlay-title{
+.textarea-overlay-title-hidden{
     display: none;
 }

@@ -1,7 +1,7 @@
 .help {
     background-color: aliceblue;
     padding: 10px;
-    position: absolute;
+    position: fixed;
     border: none;
     border-radius: 5px;
     transition: all ease 0.3s;
