@@ -15,7 +15,7 @@
 }
 
 .item-body-textarea>.textarea-overlay>.textarea:focus {
-    border-color: rgb(58, 58, 173);
+    border-color: #1a66c9;
     outline: none;
 }
 
@@ -31,12 +31,12 @@
     top: 0;
     margin-top: 115px;
     margin-right: 90px !important;
-    height: 30px !important;
-    width: 30px !important;
+    height: 40px !important;
+    width: 40px !important;
 }
 
 .shrk-btn > i{
-    font-size: 1.2em !important;
+    font-size: 1.35em !important;
 }
 
 .dwn-btn {
@@ -57,11 +57,16 @@
     border: none;
     cursor: pointer;
     transition: border-radius 0.2s ease;
+    background-color: aliceblue;
 }
 
 .item-body-textarea > .textarea-overlay > button:hover {
     background-color: rgb(215, 237, 255);
     border-radius: 5px;
+}
+
+.item-body-textarea>.textarea-overlay>button:hover > i{
+    color: rgb(19, 16, 16);
 }
 
 .txtarea-overlay-hidden{
@@ -95,12 +100,12 @@
     bottom: 0;
     margin-bottom: 65px;
     margin-right: 90px !important;
-    height: 30px !important;
-    width: 30px !important;
+    height: 40px !important;
+    width: 40px !important;
 }
 
 .dwn-btn-big > i{
-    font-size: 1.2em !important;
+    font-size: 1.35em !important;
 }
 
 .textarea-overlay-title-hidden{

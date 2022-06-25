@@ -275,7 +275,11 @@ function rightClickMenu() {
                 let newName = prompt("Enter new name for your task: ");
 
                 if (newName !== null) {
+                    //rename on the head
                     tempClass.parentElement.previousElementSibling.innerHTML =
+                        newName;
+                    //rename on Expanded Textbox Overlay (This need to be fucking fixed man)
+                    tempClass.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.lastElementChild.firstElementChild.firstElementChild.innerHTML =
                         newName;
                 }
             });

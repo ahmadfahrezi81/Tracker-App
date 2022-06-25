@@ -95,8 +95,6 @@ div#errMsgBox{
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-
-    background: bisque;
     border-radius: 5px;
     padding: 0 10px;
     visibility: hidden;

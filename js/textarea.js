@@ -103,3 +103,5 @@ export function shrinkTxtArea(dataID) {
         );
     }
 }
+
+export function renameInExpandedOverlay(newName) {}
