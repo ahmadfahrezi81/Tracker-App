@@ -81,9 +81,9 @@ a{
 
 .heroRight > .blob_motion{
     position: absolute;
-        z-index: -2;
-        left: 51%;
-        top: 32%;
+    z-index: -2;
+    left: 52%;
+    top: 32%;
 }
 
 .heroRight > .phone_svg {

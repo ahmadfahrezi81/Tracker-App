@@ -15,6 +15,28 @@
             referrerpolicy="no-referrer"
         />
         <link rel="icon" type="image/png" href="../image/timer.png" />
+        <style>
+            section.patch_notes {
+                margin: 0 200px;
+            }
+
+            section.patch_notes > h1 {
+                margin-top: 50px;
+                font-size: 2.3em;
+                /* text-transform: uppercase; */
+                font-weight: 800;
+                text-align: center;
+                width: 100%;
+            }
+
+            section.patch_notes summary {
+                -webkit-user-select: none; /* Safari */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* IE10+/Edge */
+                user-select: none; /* Standard */
+                cursor: pointer;
+            }
+        </style>
     </head>
     <body>
         <div class="wrapper">
@@ -47,7 +69,9 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="./pricing.html">Pricing</a></li>
+                        <li>
+                            <a href="./pricing.html">Pricing</a>
+                        </li>
                         <li><a href="./about.html">About</a></li>
                         <li>
                             <a href="./app.html" id="appMenuBtn"
@@ -57,32 +81,38 @@
                     </div>
                 </ul>
             </nav>
-            <section
-                class="under_development"
-                style="
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    margin-top: 50px;
-                "
-            >
-                <img
-                    style="width: 650px"
-                    src="../image/under_development.svg"
-                    alt="under development"
-                />
-                <h1
-                    style="
-                        text-transform: uppercase;
-                        font-weight: 800;
-                        font-size: 2.1em;
-                        margin-bottom: -15px;
-                    "
-                >
-                    This page is under development
-                </h1>
-                <h3>Please go to 'App' to see what we are working on</h3>
+            <section class="patch_notes">
+                <h1>Release Notes:</h1>
+                <details>
+                    <summary>
+                        June 26, 2022 | Added Release Notes & Bug Fixes
+                    </summary>
+                    <p>This is the first Relaase Notes 🎉</p>
+                    <p>
+                        A bit of things were added, since the last update. Which
+                        were a couple months ago. I have been very busy with
+                        lots of homework and now that the end of the semester is
+                        around the corner, update will be more frequents. Enough
+                        talk from me, enjoy 😊.
+                    </p>
+                    <p>These are the things that were added this month 📝:</p>
+                    <ul>
+                        <li>➕ | Release Notes Page</li>
+                        <li>➕ | Expanded TextArea for large view</li>
+                        <li>
+                            ➖ | Remove Title bug after rename in the Expanded
+                            Textarea view
+                        </li>
+                    </ul>
+                </details>
+                <!-- <details>
+                    <summary>Epcot Center</summary>
+                    <p>
+                        Epcot is a theme park at Walt Disney World Resort
+                        featuring exciting attractions, international pavilions,
+                        award-winning fireworks and seasonal special events.
+                    </p>
+                </details> -->
             </section>
         </div>
     </body>

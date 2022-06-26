@@ -61,7 +61,7 @@ export function createBox() {
                         <div class="item-body-textarea">
                             <div class="textarea-overlay txtarea-overlay-hidden" data-id="${count}">
                                 <h1 data-id="${count}" class="textarea-overlay-title textarea-overlay-title-hidden">${input.value} | notes</h1>
-                                <textarea class="textarea" data-id="text-val${count}" cols="55" rows="8" placeholder="Write notes here"
+                                <textarea class="textarea" data-id="text-val${count}" cols="55" rows="8" placeholder="📄 Write notes here"
                                 onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'    '+v.substring(e);this.selectionStart=this.selectionEnd=s+4;return false;}"
                                 ></textarea>
                                 <button class="exp-btn" data-id="${count}"><i class="fa-solid fa-maximize"></i></button>
@@ -278,7 +278,7 @@ function rightClickMenu() {
                     //rename on the head
                     tempClass.parentElement.previousElementSibling.innerHTML =
                         newName;
-                    //rename on Expanded Textbox Overlay (This need to be fucking fixed man)
+                    //rename on Expanded Textbox Overlay (This need to be fucking fixed man')
                     tempClass.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.lastElementChild.firstElementChild.firstElementChild.innerHTML =
                         newName;
                 }
