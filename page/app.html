@@ -15,6 +15,67 @@
         />
         <link rel="icon" type="image/png" href="../image/timer.png" />
         <script type="module" src="../js/main.js" defer></script>
+        <style>
+            .circle-emoji {
+                width: 40px;
+                height: 40px;
+                background: white;
+                border-radius: 50%;
+                position: absolute;
+                top: -23%;
+                right: 6.2%;
+                border: 2px solid black;
+                font-size: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .emoji-menu {
+                width: fit-content;
+                height: fit-content;
+                background: white;
+                position: absolute;
+                z-index: 4;
+                border: 2px solid black;
+                font-size: 1.5rem;
+                left: 90%;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 5px 10px;
+            }
+
+            .emoji-menu > div {
+                margin: 5px 0;
+                background-color: aliceblue;
+                width: 40px;
+                height: 40px;
+                border-radius: 5px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .emoji-menu > div:hover {
+                background-color: #4b6af4;
+            }
+
+            .emoji-menu > div > span {
+                display: none;
+                position: absolute;
+                left: 115%;
+                font-size: 1.25rem;
+                text-transform: uppercase;
+                font-weight: 500;
+                letter-spacing: 0.7px;
+            }
+
+            .emoji-menu > div:hover > span {
+                display: block;
+            }
+        </style>
     </head>
     <body>
         <div id="container">

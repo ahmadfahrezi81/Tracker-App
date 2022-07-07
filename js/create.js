@@ -10,7 +10,7 @@ export function createBox() {
     const input = document.querySelector("#inputText");
 
     // if 'Task Name' is empty
-    if (input.value.length === 0) {
+    if (isEmptyOrSpaces()) {
         const errMsgBox = document.querySelector("#errMsgBox");
         const closeErrMsg = document.querySelector("#errCloseButton");
 
@@ -27,6 +27,7 @@ export function createBox() {
         accordianItem.classList.add("accordian-item");
         accordianItem.innerHTML = `
                 <div class="accordian-item-head">
+                    <div class="circle-emoji" data-id="${count}">🔎</div>
                     <div class="item-head-display">
                         <h1>${input.value}</h1>
                         <p>time tracked: <span class="saved" data-id="${count}">00:00:00</span> <span class="circle"></p> 
@@ -80,7 +81,51 @@ export function createBox() {
     }
 }
 
-// ----------- Edited Until here ---------------- 🍀🍀🍀
+//----------------Testing---------------------
+function emojiPicker(count) {
+    const emojiCircle = document.querySelector(
+        `.circle-emoji[data-id="${count}"]`
+    );
+    let chosenEmoji = "🔎";
+
+    emojiCircle.addEventListener("mouseenter", () => {
+        const emojiMenu = document.createElement("div");
+        emojiMenu.classList.add("emoji-menu");
+        emojiMenu.innerHTML = `
+            <div>👨‍💼<span>Work</span></div>
+            <div>💻<span>Code</span></div>
+            <div>🏀<span>Exercise</span></div>
+            <div>🎮<span>Break</span></div>
+            <div>🧹<span>Chore</span></div>
+        `;
+
+        emojiCircle.append(emojiMenu);
+
+        [...emojiMenu.children].forEach((e) => {
+            e.addEventListener("mouseover", () => {
+                // console.log(e.firstChild);
+                // console.log(emojiCircle.firstChild.textContent);
+                emojiCircle.firstChild.textContent = e.firstChild.textContent;
+                chosenEmoji = e.firstChild.textContent;
+            });
+        });
+    });
+
+    emojiCircle.addEventListener("mouseleave", () => {
+        emojiCircle.innerHTML = chosenEmoji;
+    });
+}
+//----------------Testing Until here----------
+
+function isEmptyOrSpaces() {
+    const input = document.querySelector("#inputText");
+
+    return (
+        input.value.length === 0 ||
+        input.value == null ||
+        input.value.trim() === ""
+    );
+}
 
 function stopwatch(count) {
     let display = document.querySelector(`.display[data-id="${count}"]`);
@@ -96,42 +141,41 @@ function stopwatch(count) {
         display.classList.toggle("active");
 
         if (display.classList.contains("active")) {
-            display.style.backgroundColor = "#ffc2c2"; // red background
+            display.style.backgroundColor = "#ffc2c2"; // red commit background
             playPauseButton.style.backgroundColor = "#F44B59"; // red button
             playPauseButton.innerHTML = "pause";
-            savedDisplay.nextElementSibling.style.backgroundColor = "#F44B59"; //red dot
+            savedDisplay.nextElementSibling.style.backgroundColor = "#F44B59"; //red square marker
             start(display, count);
         } else {
-            display.style.backgroundColor = "#c7ffc2"; // green background
+            display.style.backgroundColor = "#c7ffc2"; // green commit background
             playPauseButton.style.backgroundColor = "#59F44B"; // green button
             playPauseButton.innerHTML = "start";
-            savedDisplay.nextElementSibling.style.backgroundColor = "#59F44B"; //green dot
+            savedDisplay.nextElementSibling.style.backgroundColor = "#59F44B"; //green square marker
             pause(count);
         }
     });
     resetButton.addEventListener("click", () => {
         if (display.classList.contains("active")) {
-            display.classList.toggle("active");
-            display.style.backgroundColor = "#fffec2"; // yellow commit background
             playPauseButton.style.backgroundColor = "#59F44B"; // green button
             playPauseButton.innerHTML = "start";
-            savedDisplay.nextElementSibling.style.backgroundColor = "#59F44B"; //green dot
-            reset(display, savedDisplay, count);
-        } else {
-            reset(display, savedDisplay, count);
-            display.style.backgroundColor = "#fffec2";
+            savedDisplay.nextElementSibling.style.backgroundColor = "#59F44B"; //green square marker
+            display.classList.toggle("active");
         }
+        reset(display, savedDisplay, count);
+        display.style.backgroundColor = "#fffec2"; // yellow commit background
     });
 }
 
 function disableButton() {
     const accordianItem = document.querySelectorAll(".accordian-item");
+
+    // "Task" account max length 🚀🚀
     if (accordianItem.length > 7) {
         generateButton.disabled = true;
-        generateButton.style.backgroundColor = "lightgrey";
+        generateButton.style.cssText = `background: lightgrey; cursor: not-allowed;`;
     } else {
         generateButton.disabled = false;
-        generateButton.style.backgroundColor = "white";
+        generateButton.style.cssText = `background: white; cursor: pointer;`;
     }
 }
 
@@ -145,8 +189,7 @@ function deleteaccordianItem(count) {
 
         if (shouldDelete) {
             deleteIcon.parentElement.parentElement.parentElement.remove();
-            generateButton.style.backgroundColor = "white";
-            generateButton.disabled = false;
+            disableButton();
             reset(display, savedDisplay, count);
         }
 
@@ -155,6 +198,8 @@ function deleteaccordianItem(count) {
             "block";
     });
 }
+
+// ----------- Edited Until here ---------------- 🍀🍀🍀
 
 function allStuff() {
     stopwatch(count);
@@ -170,10 +215,13 @@ function allStuff() {
     //start text download
     txtDownload(count);
 
-    //experiment for expand txtarea
+    //Textarea
     expandTxtArea(count);
     shrinkTxtArea(count);
-    //until here
+
+    //----------------Testing---------------------
+    emojiPicker(count);
+    //----------------Testing Until here----------
 
     count++;
 }
