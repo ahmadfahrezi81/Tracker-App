@@ -5,85 +5,66 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-        />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/kute.js/2.1.2/kute.min.js"
-            integrity="sha512-uTe+wUbchHcZHwvZwpVt4ve3FdUJPse9iC56mh6pZkxHccXx2vaSYyjlWV/Mv0NTcvGYkGZvCi1D/KZJ7qS2uQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
         <style>
-            body {
-                background-color: aliceblue;
+            #display {
+                border: 2px solid black;
+                width: 50vw;
             }
 
-            .help {
-                padding: 10px;
-                border-radius: 50%;
-                border: none;
-                cursor: pointer;
-            }
-
-            .help > i {
-                font-size: 2em;
-                color: black;
-            }
-
-            #overlay {
-                position: fixed;
-                display: none;
-                width: 50%;
-                height: 80%;
-                top: 10%;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                margin: 0 auto;
-                background-color: white;
-                z-index: 2;
-                padding: 30px 40px;
-                border-radius: 10px 10px 0 0;
-                border: 2px solid;
-            }
-
-            #overlay > textarea {
-                width: 100%;
-                resize: vertical;
-            }
-
-            .close {
-                cursor: pointer;
+            .DBitem {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
         </style>
     </head>
     <body>
-        <div id="overlay" class="unselec">
-            <h2>Hello</h2>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <button class="close" onclick="off()">close</button>
-        </div>
-        <section>
-            <button class="help" onclick="on()">
-                <i class="fa-solid fa-circle-info"></i>
-            </button>
-        </section>
-        <section>
-            <h1 class="h1" data-id="1">hello</h1>
-            <p class="p" data-id="1">hello</p>
-        </section>
-        <script>
-            document.querySelector('.h1[data-id= "1"]').innerHTML = "change";
-
-            function on() {
-                document.getElementById("overlay").style.display = "block";
-            }
-
-            function off() {
-                document.getElementById("overlay").style.display = "none";
-            }
-        </script>
+        <h1>Local DB</h1>
+        <div id="display"></div>
+        <button id="add">Add to database</button>
+        <button id="clear">Clear database</button>
     </body>
+    <script>
+        function addDB() {
+            document.querySelector("#add").addEventListener("click", () => {
+                let key = prompt("Enter key: ");
+                let item = prompt("Enter item: ");
+
+                localStorage.setItem(key, item);
+
+                printDB();
+            });
+        }
+
+        function clearDB() {
+            document.querySelector("#clear").addEventListener("click", () => {
+                localStorage.clear();
+
+                printDB();
+            });
+        }
+
+        function printDB() {
+            const clockTrack = document.querySelector("#display");
+
+            clockTrack.innerHTML = ""; //clear all the DB before printing
+
+            for (let index = 0; index < localStorage.length; index++) {
+                let DBitem = document.createElement("div");
+                DBitem.innerHTML = `
+                <p class="key">${localStorage.key(index)}</p>
+                <p class="item">${localStorage.getItem(
+                    localStorage.key(index)
+                )}</p>
+            `;
+
+                DBitem.classList.add("DBitem");
+
+                clockTrack.prepend(DBitem);
+            }
+        }
+
+        addDB();
+        clearDB();
+        printDB();
+    </script>
 </html>

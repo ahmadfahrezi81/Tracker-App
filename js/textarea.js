@@ -47,8 +47,6 @@ export function expandTxtArea(dataID) {
         expButton.addEventListener(
             "click",
             () => {
-                console.log(expButton);
-
                 textareaOverlay.classList.add("txtarea-overlay-show");
                 textareaOverlay.classList.remove("txtarea-overlay-hidden");
                 expButton.classList.add("btn-hidden");
@@ -82,7 +80,6 @@ export function shrinkTxtArea(dataID) {
         shrkButton.addEventListener(
             "click",
             () => {
-                console.log(shrkButton);
                 textareaOverlay.classList.remove("txtarea-overlay-show");
                 textareaOverlay.classList.add("txtarea-overlay-hidden");
                 shrkButton.classList.add("btn-hidden");

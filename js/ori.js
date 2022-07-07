@@ -1,20 +1,22 @@
+import { accordian } from "./accordian.js";
 import { start, pause, reset, addTime, reduceTime } from "./stopwatch.js";
 import { txtDownload, expandTxtArea, shrinkTxtArea } from "./textarea.js";
 
 const generateButton = document.querySelector("#generate");
-const container = document.querySelector("#main-container");
+const container = document.querySelector(".main-container");
 
 let count = 0;
 
 export function createBox() {
+    const accordianItem = document.createElement("div");
     const input = document.querySelector("#inputText");
 
-    // if 'Task Name' is empty
+    // if there is nothing in the input
     if (input.value.length === 0) {
         const errMsgBox = document.querySelector("#errMsgBox");
         const closeErrMsg = document.querySelector("#errCloseButton");
-
-        errMsg.innerHTML = `Please give your 'Task' a name and 'start task' ⌛`;
+        errMsg.innerHTML =
+            "Your stopwatch begs you to give it a name as it cries in despair. &#128557";
         errMsgBox.style.visibility = "visible";
 
         closeErrMsg.addEventListener("click", () => {
@@ -22,14 +24,25 @@ export function createBox() {
             errMsgBox.style.visibility = "hidden";
         });
     } else {
-        //create task and its features
-        const accordianItem = document.createElement("div");
+        //remove the message text
+        if (container.firstElementChild.tagName == "H4") {
+            container.firstElementChild.style.display = "none";
+        }
+        //below is the original
+
         accordianItem.classList.add("accordian-item");
+
+        //this is testing the local storage
+        if (typeof Storage !== "undefined") {
+            // Store
+            localStorage.setItem("stopwatch_name", input.value);
+        }
+
         accordianItem.innerHTML = `
                 <div class="accordian-item-head">
                     <div class="item-head-display">
                         <h1>${input.value}</h1>
-                        <p>time tracked: <span class="saved" data-id="${count}">00:00:00</span> <span class="circle"></p> 
+                        <p>time tracked: <span class="saved savedDisplay${count}">00:00:00</span> <span class="circle"></p> 
                     </div>
                     <div class="item-head-toggle">
                         <i class="fas fa-caret-down item-head-arrow"></i>
@@ -39,10 +52,10 @@ export function createBox() {
                 <div class="accordian-item-body">
                     <div class="accordian-body-display">
                         <div class="item-body-stopwatch">
-                            <span class="display" data-id="${count}">00:00:00</span>
+                            <span class='display display${count}'>00:00:00</span>
                             <div class="stopwatch-buttons">
-                                <button class='playPauseButton' data-id="${count}">start</button>
-                                <button class='resetButton' data-id="${count}">save</button>
+                                <button class='playPauseButton playPause${count}'>start</button>
+                                <button class='resetButton reset${count}'>save</button>
                             </div>
                         </div>
                         <div class="item-body-textarea">
@@ -59,40 +72,23 @@ export function createBox() {
                         </div>
                     </div>
                     <div class="delete">
-                        <i title="Please don't delete me"class="fas fa-trash delete-icon" data-id="${count}"></i>
+                        <i title="Please don't delete me"class="fas fa-trash delete-icon delete${count}"></i>
                     </div>
                 </div>`;
+
+        input.value = ""; //clear the input in the text
         container.prepend(accordianItem);
-
-        //clear the text input (task name)
-        input.value = "";
-
-        //remove the message text
-        document.querySelector("#instructionWhenNoTask").style.display = "none";
-
-        //this is testing the local storage
-        if (typeof Storage !== "undefined") {
-            // Store
-            localStorage.setItem("stopwatch_name", input.value);
-        }
 
         allStuff();
     }
 }
 
-// ----------- Edited Until here ---------------- 🍀🍀🍀
+function stopwatch(playPauseNum, resetNum, displayNum, savedDisplayNum) {
+    let display = document.querySelector(`.${displayNum}`);
+    let playPauseButton = document.querySelector(`.${playPauseNum}`);
+    let savedDisplay = document.querySelector(`.${savedDisplayNum}`);
 
-function stopwatch(count) {
-    let display = document.querySelector(`.display[data-id="${count}"]`);
-    let playPauseButton = document.querySelector(
-        `.playPauseButton[data-id="${count}"]`
-    );
-    let savedDisplay = document.querySelector(`.saved[data-id="${count}"]`);
-    let resetButton = document.querySelector(
-        `.resetButton[data-id="${count}"]`
-    );
-
-    playPauseButton.addEventListener("click", () => {
+    document.querySelector(`.${playPauseNum}`).addEventListener("click", () => {
         display.classList.toggle("active");
 
         if (display.classList.contains("active")) {
@@ -100,25 +96,33 @@ function stopwatch(count) {
             playPauseButton.style.backgroundColor = "#F44B59"; // red button
             playPauseButton.innerHTML = "pause";
             savedDisplay.nextElementSibling.style.backgroundColor = "#F44B59"; //red dot
-            start(display, count);
+            start(`.${displayNum}`, `${displayNum}`.slice(-1));
         } else {
             display.style.backgroundColor = "#c7ffc2"; // green background
             playPauseButton.style.backgroundColor = "#59F44B"; // green button
             playPauseButton.innerHTML = "start";
             savedDisplay.nextElementSibling.style.backgroundColor = "#59F44B"; //green dot
-            pause(count);
+            pause(`${displayNum}`.slice(-1));
         }
     });
-    resetButton.addEventListener("click", () => {
+    document.querySelector(`.${resetNum}`).addEventListener("click", () => {
         if (display.classList.contains("active")) {
             display.classList.toggle("active");
             display.style.backgroundColor = "#fffec2"; // yellow commit background
             playPauseButton.style.backgroundColor = "#59F44B"; // green button
             playPauseButton.innerHTML = "start";
             savedDisplay.nextElementSibling.style.backgroundColor = "#59F44B"; //green dot
-            reset(display, savedDisplay, count);
+            reset(
+                `.${displayNum}`,
+                `.${savedDisplayNum}`,
+                `${displayNum}`.slice(-1)
+            );
         } else {
-            reset(display, savedDisplay, count);
+            reset(
+                `.${displayNum}`,
+                `.${savedDisplayNum}`,
+                `${displayNum}`.slice(-1)
+            );
             display.style.backgroundColor = "#fffec2";
         }
     });
@@ -135,11 +139,8 @@ function disableButton() {
     }
 }
 
-function deleteaccordianItem(count) {
-    let deleteIcon = document.querySelector(`.delete-icon[data-id="${count}"]`);
-    let display = document.querySelector(`.display[data-id="${count}"]`);
-    let savedDisplay = document.querySelector(`.saved[data-id="${count}"]`);
-
+function deleteaccordianItem(displayNum, savedDisplayNum, deleteNum) {
+    let deleteIcon = document.querySelector(`.${deleteNum}`);
     deleteIcon.addEventListener("click", () => {
         let shouldDelete = confirm("Do you want to delete this task?");
 
@@ -147,21 +148,36 @@ function deleteaccordianItem(count) {
             deleteIcon.parentElement.parentElement.parentElement.remove();
             generateButton.style.backgroundColor = "white";
             generateButton.disabled = false;
-            reset(display, savedDisplay, count);
+            reset(
+                `.${displayNum}`,
+                `.${savedDisplayNum}`,
+                `${displayNum}`.slice(-1)
+            );
         }
 
-        //print the instruction if all 'task' is deleted
-        document.querySelector("#instructionWhenNoTask").style.display =
-            "block";
+        //print the instruction if all is deleted
+        if (container.firstElementChild.tagName == "H4") {
+            container.firstElementChild.style.display = "block";
+        }
     });
 }
 
 function allStuff() {
-    stopwatch(count);
+    stopwatch(
+        `playPause${count}`,
+        `reset${count}`,
+        `display${count}`,
+        `savedDisplay${count}`
+    );
+    // console.log(`playPause${count}`,`reset${count}`, `display${count}`, `savedDisplay${count}`)
 
     disableButton();
 
-    deleteaccordianItem(count);
+    deleteaccordianItem(
+        `display${count}`,
+        `savedDisplay${count}`,
+        `delete${count}`
+    );
 
     changeColor();
 
@@ -240,7 +256,7 @@ function rightClickMenu() {
                 typeof pointer === "object" &&
                 pointer.classList.value !== "circle"
             ) {
-                positionNum = pointer.firstElementChild.getAttribute("data-id");
+                positionNum = parseInt(pointer.children[0].className.slice(-1));
             } else {
                 console.log("Pointer is undefined");
             }
@@ -256,10 +272,18 @@ function rightClickMenu() {
 
             //trying to get the class savedDisplay class so we can
             // go the <h1> for innner HTML
+            let tempPointer;
 
-            let tempClass = document.querySelector(
-                `.saved[data-id="${positionNum}"]`
-            );
+            if (
+                typeof pointer === "object" &&
+                pointer.classList.value !== "circle"
+            ) {
+                tempPointer = pointer.children[0].className.split(" ").pop();
+            } else {
+                console.log("Pointer is undefined");
+            }
+
+            let tempClass = document.querySelector(`.${tempPointer}`);
 
             //try to rename
             document.querySelector("#rename").addEventListener("click", () => {

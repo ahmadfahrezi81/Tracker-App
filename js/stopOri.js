@@ -26,7 +26,9 @@ let timerInterval = [];
 let timeSaved = [];
 let totalTimeSaved = 0;
 
-export function start(display, num) {
+export function start(displayName, num) {
+    let display = document.querySelector(displayName);
+
     if (display.innerHTML === "00:00:00") {
         elapsedTime[num] = 0;
     }
@@ -34,7 +36,9 @@ export function start(display, num) {
     startTime[num] = Date.now() - elapsedTime[num];
     timerInterval[num] = setInterval(function printTime() {
         elapsedTime[num] = Date.now() - startTime[num];
-        display.innerHTML = timeToString(elapsedTime[num]);
+        document.querySelector(displayName).innerHTML = timeToString(
+            elapsedTime[num]
+        );
         // console.log(elapsedTime);
 
         //check if timer is on every 1 sec
@@ -49,9 +53,9 @@ export function pause(num) {
     isAlive();
 }
 
-export function reset(display, savedDisplay, num) {
-    // let display = document.querySelector(displayName);
-    // let savedDisplay = document.querySelector(savedDisplayName);
+export function reset(displayName, savedDisplayName, num) {
+    let display = document.querySelector(displayName);
+    let savedDisplay = document.querySelector(savedDisplayName);
     let totalSaveDisplay = document.querySelector("#totalSaved");
 
     clearInterval(timerInterval[num]);
@@ -87,7 +91,7 @@ export function reset(display, savedDisplay, num) {
 //add time ***this only work for the first item only
 export function addTime(num) {
     let totalSaveDisplay = document.querySelector("#totalSaved");
-    let savedDisplay = document.querySelector(`.saved[data-id="${num}"]`);
+    let savedDisplay = document.querySelector(`.savedDisplay${num}`);
 
     if (savedDisplay) {
         let timeToAdd = 1000 * 60 * 15; //15min to add
@@ -108,7 +112,7 @@ export function addTime(num) {
 //reduce time
 export function reduceTime(num) {
     let totalSaveDisplay = document.querySelector("#totalSaved");
-    let savedDisplay = document.querySelector(`.saved[data-id="${num}"]`);
+    let savedDisplay = document.querySelector(`.savedDisplay${num}`);
 
     if (savedDisplay) {
         let timeToSub = 1000 * 60 * 15; //15min to reduce
