@@ -1,4 +1,4 @@
-import { start, pause, reset, addTime, reduceTime } from "./stopwatch.js";
+import { start, pause, reset, addingTime, reducingTime } from "./stopwatch.js";
 import { txtDownload, expandTxtArea, shrinkTxtArea } from "./textarea.js";
 
 const generateButton = document.querySelector("#generate");
@@ -25,10 +25,11 @@ export function createBox() {
         //create task and its features
         const accordianItem = document.createElement("div");
         accordianItem.classList.add("accordian-item");
+        accordianItem.setAttribute("data-id", count);
         accordianItem.innerHTML = `
                 <div class="accordian-item-head">
                     <div class="circle-emoji" data-id="${count}">🔎</div>
-                    <div class="item-head-display">
+                    <div class="item-head-display" data-id="${count}">
                         <h1>${input.value}</h1>
                         <p>time tracked: <span class="saved" data-id="${count}">00:00:00</span> <span class="circle"></p> 
                     </div>
@@ -93,6 +94,7 @@ function emojiPicker(count) {
         emojiMenu.classList.add("emoji-menu");
         emojiMenu.innerHTML = `
             <div>👨‍💼<span>Work</span></div>
+            <div>📚<span>Homework</span></div>
             <div>💻<span>Code</span></div>
             <div>🏀<span>Exercise</span></div>
             <div>🎮<span>Break</span></div>
@@ -107,6 +109,9 @@ function emojiPicker(count) {
                 // console.log(emojiCircle.firstChild.textContent);
                 emojiCircle.firstChild.textContent = e.firstChild.textContent;
                 chosenEmoji = e.firstChild.textContent;
+            });
+            e.addEventListener("click", () => {
+                emojiMenu.remove(); //remove the emojiMenu when it is clicked
             });
         });
     });
@@ -179,7 +184,12 @@ function disableButton() {
     }
 }
 
+// ----------- Edited Until here ---------------- 🍀🍀🍀
+
 function deleteaccordianItem(count) {
+    let accordianItem = document.querySelector(
+        `.accordian-item[data-id="${count}"]`
+    );
     let deleteIcon = document.querySelector(`.delete-icon[data-id="${count}"]`);
     let display = document.querySelector(`.display[data-id="${count}"]`);
     let savedDisplay = document.querySelector(`.saved[data-id="${count}"]`);
@@ -188,29 +198,30 @@ function deleteaccordianItem(count) {
         let shouldDelete = confirm("Do you want to delete this task?");
 
         if (shouldDelete) {
-            deleteIcon.parentElement.parentElement.parentElement.remove();
+            accordianItem.remove();
             disableButton();
             reset(display, savedDisplay, count);
         }
 
-        //print the instruction if all 'task' is deleted
+        //print the instruction again if all 'task' is deleted
         document.querySelector("#instructionWhenNoTask").style.display =
             "block";
     });
 }
 
-// ----------- Edited Until here ---------------- 🍀🍀🍀
-
 function allStuff() {
     stopwatch(count);
 
+    //This is to disable the button on top if it exceed max currently (7)
     disableButton();
 
+    //This is to delete the accordian item
     deleteaccordianItem(count);
 
-    changeColor();
+    //Randomly assign color to the item head display
+    randomColorGenerator();
 
-    rightClickMenu();
+    rightClickMenu(count);
 
     //start text download
     txtDownload(count);
@@ -226,20 +237,19 @@ function allStuff() {
     count++;
 }
 
-function changeColor() {
-    let colorCount = document.querySelector(".item-head-display");
+function randomColorGenerator() {
+    let itemHeadDisplay = document.querySelector(".item-head-display");
 
-    let colorArr = [255, 233];
-    let randnum = Math.floor(Math.random() * 23 + 233);
+    let colorArr = [255, 210]; //this is predetermined
+    let randnum = Math.floor(Math.random() * 55 + 200); //this is to get a value between 190 to 255
     colorArr.push(randnum);
 
-    shuffle(colorArr);
-    // console.log(colorArr)
+    colorArr = shuffle(colorArr);
 
-    colorCount.style.backgroundColor = `rgb(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]})`;
-    colorArr = [];
+    itemHeadDisplay.style.backgroundColor = `rgb(${colorArr[0]}, ${colorArr[1]}, ${colorArr[2]})`;
 }
 
+// I got this shuffle method from the internet, currently used for randomizing color
 function shuffle(array) {
     let currentIndex = array.length,
         randomIndex;
@@ -260,7 +270,15 @@ function shuffle(array) {
     return array;
 }
 
-function rightClickMenu() {
+function rightClickMenu(count) {
+    let itemHeadDisplay = document.querySelector(
+        `.item-head-display[data-id="${count}"]`
+    );
+
+    let textareaOverlayTitle = document.querySelector(
+        `.textarea-overlay-title[data-id="${count}"]`
+    );
+
     //experiment right menu
     document
         .querySelector(".item-head-display")
@@ -270,7 +288,7 @@ function rightClickMenu() {
             menu.className = "unselectable";
             menu.id = "ctxmenu";
             menu.style = `top:${e.pageY - 10}px;left:${e.pageX - 40}px`;
-            menu.onmouseleave = () => (ctxmenu.outerHTML = "");
+            menu.onmouseleave = () => (menu.outerHTML = "");
 
             // console.log(document.getElementById("ctxmenu"));
 
@@ -280,46 +298,47 @@ function rightClickMenu() {
                     <p id="rename">Rename</p>`;
             document.body.appendChild(menu);
 
-            //try to get the class num for specific display
-            let pointer = e.target.children[1];
-            let positionNum;
-
-            if (
-                typeof pointer === "object" &&
-                pointer.classList.value !== "circle"
-            ) {
-                positionNum = pointer.firstElementChild.getAttribute("data-id");
-            } else {
-                console.log("Pointer is undefined");
-            }
-
-            //experiment add 15min from right click menu
-            document.querySelector("#addTime").addEventListener("click", () => {
-                addTime(positionNum); //add time from func in stopwatcth.js
-            });
-
-            document.querySelector("#subTime").addEventListener("click", () => {
-                reduceTime(positionNum); //reduce time from func in stopwatcth.js
-            });
-
-            //trying to get the class savedDisplay class so we can
-            // go the <h1> for innner HTML
-
-            let tempClass = document.querySelector(
-                `.saved[data-id="${positionNum}"]`
-            );
-
-            //try to rename
             document.querySelector("#rename").addEventListener("click", () => {
                 let newName = prompt("Enter new name for your task: ");
 
                 if (newName !== null) {
-                    //rename on the head
-                    tempClass.parentElement.previousElementSibling.innerHTML =
-                        newName;
-                    //rename on Expanded Textbox Overlay (This need to be fucking fixed man')
-                    tempClass.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.lastElementChild.firstElementChild.firstElementChild.innerHTML =
-                        newName;
+                    //rename on the itemHeadDisplay
+                    itemHeadDisplay.firstElementChild.innerHTML = newName; //fix this a little
+
+                    //rename on the H1 overlay
+                    textareaOverlayTitle.innerHTML = newName;
+                }
+            });
+
+            document.querySelector("#addTime").addEventListener("click", () => {
+                let addedTime = prompt(
+                    "Input your time in the following format (HH:MM:SS): ",
+                    "01:00:00"
+                );
+                let temp;
+
+                temp = addedTime.split(":");
+
+                if (temp.every((e) => parseInt(e) <= 60 && parseInt(e) >= 0)) {
+                    addingTime(count, temp);
+                } else {
+                    alert("Wrong input. Try again!");
+                }
+            });
+
+            document.querySelector("#subTime").addEventListener("click", () => {
+                let addedTime = prompt(
+                    "Input your time in the following format (HH:MM:SS): ",
+                    "01:00:00"
+                );
+                let temp;
+
+                temp = addedTime.split(":");
+
+                if (temp.every((e) => parseInt(e) <= 60 && parseInt(e) >= 0)) {
+                    reducingTime(count, temp);
+                } else {
+                    alert("Wrong input. Try again!");
                 }
             });
         });

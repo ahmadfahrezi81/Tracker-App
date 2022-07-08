@@ -85,41 +85,44 @@ export function reset(display, savedDisplay, num) {
 }
 
 //add time ***this only work for the first item only
-export function addTime(num) {
+export function addingTime(num, arr) {
     let totalSaveDisplay = document.querySelector("#totalSaved");
     let savedDisplay = document.querySelector(`.saved[data-id="${num}"]`);
+    let hours = 1000 * 60 * 60 * arr[0];
+    let mins = 1000 * 60 * arr[1];
+    let seconds = 1000 * arr[2];
 
-    if (savedDisplay) {
-        let timeToAdd = 1000 * 60 * 15; //15min to add
+    let totalAddedTime = hours + mins + seconds;
 
-        if (timeSaved[num] === undefined) {
-            //if time is empty
-            timeSaved[num] = timeToAdd;
-            totalTimeSaved += timeToAdd;
-        } else {
-            timeSaved[num] += timeToAdd;
-            totalTimeSaved += timeToAdd;
-        }
-        savedDisplay.innerHTML = timeToString(timeSaved[num]);
-        totalSaveDisplay.innerHTML = timeToString(totalTimeSaved);
+    if (timeSaved[num] === undefined) {
+        //if time is empty
+        timeSaved[num] = totalAddedTime;
+        totalTimeSaved += totalAddedTime;
+    } else {
+        timeSaved[num] += totalAddedTime;
+        totalTimeSaved += totalAddedTime;
     }
+    savedDisplay.innerHTML = timeToString(timeSaved[num]);
+    totalSaveDisplay.innerHTML = timeToString(totalTimeSaved);
 }
 
-//reduce time
-export function reduceTime(num) {
+export function reducingTime(num, arr) {
     let totalSaveDisplay = document.querySelector("#totalSaved");
     let savedDisplay = document.querySelector(`.saved[data-id="${num}"]`);
 
-    if (savedDisplay) {
-        let timeToSub = 1000 * 60 * 15; //15min to reduce
+    let hours = 1000 * 60 * 60 * arr[0];
+    let mins = 1000 * 60 * arr[1];
+    let seconds = 1000 * arr[2];
 
-        if (timeSaved[num] >= timeToSub) {
-            //if time is empty
-            timeSaved[num] -= timeToSub;
-            totalTimeSaved -= timeToSub;
-            savedDisplay.innerHTML = timeToString(timeSaved[num]);
-            totalSaveDisplay.innerHTML = timeToString(totalTimeSaved);
-        }
+    let totalSubTime = hours + mins + seconds;
+
+    if (timeSaved[num] >= totalSubTime) {
+        timeSaved[num] -= totalSubTime;
+        totalTimeSaved -= totalSubTime;
+        savedDisplay.innerHTML = timeToString(timeSaved[num]);
+        totalSaveDisplay.innerHTML = timeToString(totalTimeSaved);
+    } else {
+        alert("Your total time is too small");
     }
 }
 
