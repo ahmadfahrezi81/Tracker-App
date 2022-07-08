@@ -184,8 +184,6 @@ function disableButton() {
     }
 }
 
-// ----------- Edited Until here ---------------- 🍀🍀🍀
-
 function deleteaccordianItem(count) {
     let accordianItem = document.querySelector(
         `.accordian-item[data-id="${count}"]`
@@ -270,6 +268,8 @@ function shuffle(array) {
     return array;
 }
 
+// ----------- Edited Until here ---------------- 🍀🍀🍀
+
 function rightClickMenu(count) {
     let itemHeadDisplay = document.querySelector(
         `.item-head-display[data-id="${count}"]`
@@ -293,8 +293,9 @@ function rightClickMenu(count) {
             // console.log(document.getElementById("ctxmenu"));
 
             menu.innerHTML = `
-                    <p id="subTime"><span>Reduce</span><span>-15min</span></p>
-                    <p id="addTime"><span>Add</span><span>+15min</span></p>
+                    <h4>Menu<i class="fa-solid fa-hourglass"></i></h4>
+                    <p id="subTime">Reduce</p>
+                    <p id="addTime">Add</p>
                     <p id="rename">Rename</p>`;
             document.body.appendChild(menu);
 

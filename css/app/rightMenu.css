@@ -5,24 +5,34 @@
     cursor: pointer;
     border: 2px black solid;
     border-radius: 2px;
-    width: 250px;
+    width: 200px;
 }
 
-#ctxmenu > p{
-    padding: 0 1rem;
+#ctxmenu > h4{
     margin: 0;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid black;
     display: flex;
     justify-content: space-between;
 }
 
-#ctxmenu>p>span{
-    font-size: 16px;
-    font-weight: 500;
+#ctxmenu > p{
+    padding: 0.25rem 1rem;
+    margin: 0;
 }
 
 #ctxmenu > p:hover {
-    background: black;
     color: ghostwhite
+}  
+
+#ctxmenu > p:nth-child(2):hover{
+    background: rgb(244, 75, 89);
+}
+#ctxmenu>p:nth-child(3):hover {
+    background: rgb(34, 182, 21);
+}
+#ctxmenu>p:nth-child(4):hover {
+    background: #4b6af4;
 }
 
 
