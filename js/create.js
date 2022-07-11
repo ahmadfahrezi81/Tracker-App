@@ -316,14 +316,19 @@ function rightClickMenu(count) {
                     "Input your time in the following format (HH:MM:SS): ",
                     "01:00:00"
                 );
-                let temp;
 
-                temp = addedTime.split(":");
+                if (addedTime !== null) {
+                    let temp;
 
-                if (temp.every((e) => parseInt(e) <= 60 && parseInt(e) >= 0)) {
-                    addingTime(count, temp);
-                } else {
-                    alert("Wrong input. Try again!");
+                    temp = addedTime.split(":");
+
+                    if (
+                        temp.every((e) => parseInt(e) <= 60 && parseInt(e) >= 0)
+                    ) {
+                        addingTime(count, temp);
+                    } else {
+                        alert("Wrong input. Try again!");
+                    }
                 }
             });
 
@@ -332,14 +337,19 @@ function rightClickMenu(count) {
                     "Input your time in the following format (HH:MM:SS): ",
                     "01:00:00"
                 );
-                let temp;
 
-                temp = addedTime.split(":");
+                if (addedTime !== null) {
+                    let temp;
 
-                if (temp.every((e) => parseInt(e) <= 60 && parseInt(e) >= 0)) {
-                    reducingTime(count, temp);
-                } else {
-                    alert("Wrong input. Try again!");
+                    temp = addedTime.split(":");
+
+                    if (
+                        temp.every((e) => parseInt(e) <= 60 && parseInt(e) >= 0)
+                    ) {
+                        reducingTime(count, temp);
+                    } else {
+                        alert("Wrong input. Try again!");
+                    }
                 }
             });
         });

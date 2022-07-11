@@ -3,7 +3,7 @@
     background: white;
     color: black;
     cursor: pointer;
-    border: 2px black solid;
+    border: 0.18rem black solid;
     border-radius: 2px;
     width: 200px;
 }
@@ -11,7 +11,7 @@
 #ctxmenu > h4{
     margin: 0;
     padding: 0.5rem 1rem;
-    border-bottom: 2px solid black;
+    border-bottom: 0.18rem solid black;
     display: flex;
     justify-content: space-between;
 }

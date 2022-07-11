@@ -142,7 +142,7 @@ div#errMsgBox{
     background-color: #DFFFF4;
     padding: 0 2vw;
     border-radius: 0.3rem;
-    border: 2px solid black;
+    border: 0.18rem solid black;
 }
 
 .circle{
@@ -208,12 +208,12 @@ div#errMsgBox{
 }
 
 .stopwatch-buttons > button{
-    border: black solid 2px;
+    border: black solid 0.18rem;
     background-color: white;
     font-size: 1.2em;
     font-weight: 700;
     padding: 6px 5px;
-    width: 8em;
+    width: 49%;
     /* width: 5.5em; */
     cursor: pointer;
 }
