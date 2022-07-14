@@ -34,7 +34,7 @@
     background-color: white;
     z-index: 2;
     cursor: pointer;
-    padding: 50px 200px;
+    padding: 50px 10vw;
     box-sizing: border-box;
 }
 
@@ -45,4 +45,11 @@
     right: 0;
     margin: 0 auto;
     text-align: center;
+}
+
+@media (max-width: 576px) {
+    #overlay {
+        font-size: 0.9em;
+    }
+
 }
