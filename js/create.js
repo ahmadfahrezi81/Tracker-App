@@ -302,12 +302,14 @@ function rightClickMenu(count) {
             document.querySelector("#rename").addEventListener("click", () => {
                 let newName = prompt("Enter new name for your task: ");
 
-                if (newName !== null) {
+                if (!isEmptyOrSpaces()) {
                     //rename on the itemHeadDisplay
                     itemHeadDisplay.firstElementChild.innerHTML = newName; //fix this a little
 
                     //rename on the H1 overlay
                     textareaOverlayTitle.innerHTML = newName;
+                } else {
+                    alert("Task name cannot be empty");
                 }
             });
 
@@ -322,9 +324,7 @@ function rightClickMenu(count) {
 
                     temp = addedTime.split(":");
 
-                    if (
-                        temp.every((e) => parseInt(e) <= 60 && parseInt(e) >= 0)
-                    ) {
+                    if (checkPattern(temp)) {
                         addingTime(count, temp);
                     } else {
                         alert("Wrong input. Try again!");
@@ -343,9 +343,7 @@ function rightClickMenu(count) {
 
                     temp = addedTime.split(":");
 
-                    if (
-                        temp.every((e) => parseInt(e) <= 60 && parseInt(e) >= 0)
-                    ) {
+                    if (checkPattern(temp)) {
                         reducingTime(count, temp);
                     } else {
                         alert("Wrong input. Try again!");
@@ -353,4 +351,17 @@ function rightClickMenu(count) {
                 }
             });
         });
+}
+
+function checkPattern(temp) {
+    return (
+        temp.length === 3 &&
+        temp.every(
+            (e) =>
+                parseInt(e) <= 60 &&
+                parseInt(e) >= 0 &&
+                e.length === 2 &&
+                !isNaN(e)
+        )
+    );
 }
