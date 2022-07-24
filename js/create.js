@@ -287,13 +287,14 @@ function rightClickMenu(count) {
             let menu = document.createElement("div");
             menu.className = "unselectable";
             menu.id = "ctxmenu";
-            menu.style = `top:${e.pageY - 10}px;left:${e.pageX - 40}px`;
+            console.log(itemHeadDisplay);
+            menu.style = `top:${e.y}px;left:${e.x}px`;
             menu.onmouseleave = () => (menu.outerHTML = "");
 
             // console.log(document.getElementById("ctxmenu"));
 
             menu.innerHTML = `
-                    <h4>Menu<i class="fa-solid fa-hourglass"></i></h4>
+                    <h4><i class="fa-solid fa-hourglass">Menu</i><span>${itemHeadDisplay.firstElementChild.innerHTML}</span></h4>
                     <p id="subTime">Reduce</p>
                     <p id="addTime">Add</p>
                     <p id="rename">Rename</p>`;
