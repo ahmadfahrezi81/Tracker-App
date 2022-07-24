@@ -291,7 +291,6 @@ function rightClickMenu(count) {
             let menu = document.createElement("div");
             menu.className = "unselectable";
             menu.id = "ctxmenu";
-            console.log(itemHeadDisplay);
             menu.style = `top:${e.y}px;left:${e.x}px`;
             menu.onmouseleave = () => (menu.outerHTML = "");
 

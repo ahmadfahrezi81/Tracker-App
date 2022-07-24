@@ -15,6 +15,23 @@
         />
         <link rel="icon" type="image/png" href="../image/timer.png" />
         <script type="module" src="../js/main.js" defer></script>
+        <style>
+            #dateOnSide {
+                position: fixed;
+                top: 50%;
+                left: 42px;
+                font-weight: 500;
+                transform: translate(-50%, -50%);
+                writing-mode: vertical-lr;
+                text-orientation: upright;
+            }
+
+            @media (max-width: 576px) {
+                #dateOnSide {
+                    display: none;
+                }
+            }
+        </style>
     </head>
     <body>
         <div id="container">
@@ -64,6 +81,11 @@
                 <p>Home</p>
             </div>
         </a>
+        <!-- this is the date -->
+        <section id="dateOnSide" class="unselectable">
+            This is the date on the left side
+        </section>
+
         <!-- This is the instruction button -->
         <section>
             <button class="help" title="instruction" onclick="onOverlay()">
@@ -99,6 +121,15 @@
             function offOverlay() {
                 document.getElementById("overlay").style.display = "none";
             }
+
+            const dt = new Date();
+
+            document.querySelector("#dateOnSide").innerHTML =
+                dt.getFullYear() +
+                "/" +
+                (dt.getUTCMonth() + 1) +
+                "/" +
+                dt.getDate();
         </script>
     </body>
 </html>
