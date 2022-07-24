@@ -201,9 +201,12 @@ function deleteaccordianItem(count) {
             reset(display, savedDisplay, count);
         }
 
-        //print the instruction again if all 'task' is deleted
-        document.querySelector("#instructionWhenNoTask").style.display =
-            "block";
+        //if there is no more children then delete
+        if (container.childElementCount === 1) {
+            //print the instruction again if all 'task' is deleted
+            document.querySelector("#instructionWhenNoTask").style.display =
+                "block";
+        }
     });
 }
 
@@ -269,6 +272,7 @@ function shuffle(array) {
 }
 
 // ----------- Edited Until here ---------------- 🍀🍀🍀
+let timeInPrompt = "01:00:00";
 
 function rightClickMenu(count) {
     let itemHeadDisplay = document.querySelector(
@@ -317,7 +321,7 @@ function rightClickMenu(count) {
             document.querySelector("#addTime").addEventListener("click", () => {
                 let addedTime = prompt(
                     "Input your time in the following format (HH:MM:SS): ",
-                    "01:00:00"
+                    timeInPrompt
                 );
 
                 if (addedTime !== null) {
@@ -327,6 +331,7 @@ function rightClickMenu(count) {
 
                     if (checkPattern(temp)) {
                         addingTime(count, temp);
+                        timeInPrompt = addedTime;
                     } else {
                         alert("Wrong input. Try again!");
                     }
@@ -336,7 +341,7 @@ function rightClickMenu(count) {
             document.querySelector("#subTime").addEventListener("click", () => {
                 let addedTime = prompt(
                     "Input your time in the following format (HH:MM:SS): ",
-                    "01:00:00"
+                    timeInPrompt
                 );
 
                 if (addedTime !== null) {
@@ -346,6 +351,7 @@ function rightClickMenu(count) {
 
                     if (checkPattern(temp)) {
                         reducingTime(count, temp);
+                        timeInPrompt = addedTime;
                     } else {
                         alert("Wrong input. Try again!");
                     }
