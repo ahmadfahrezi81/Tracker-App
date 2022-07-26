@@ -16,25 +16,55 @@
         <link rel="icon" type="image/png" href="../image/timer.png" />
         <script type="module" src="../js/main.js" defer></script>
         <style>
-            #dateOnSide {
+            #settings {
                 position: fixed;
-                top: 50%;
-                left: 42px;
-                font-weight: 500;
-                transform: translate(-50%, -50%);
-                writing-mode: vertical-rl;
-                text-orientation: upright;
+                left: 20px;
+                top: 18%;
             }
 
-            #dateOnSide span:first-child {
-                font-weight: 800;
-                font-size: 1.1em;
+            #settings-button {
+                cursor: pointer;
+                margin-left: 0.2rem;
+                background: #fff;
+                border: none;
             }
 
-            @media (max-width: 576px) {
-                #dateOnSide {
-                    display: none;
-                }
+            #settings-button > i:first-child {
+                font-size: 1.8em;
+            }
+
+            #settings-sidebar {
+                z-index: 3;
+                position: fixed;
+                background: aliceblue;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                padding: 20px;
+                width: 180px;
+            }
+
+            #settings-sidebar > h2 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            #settings-sidebar > h2 > i {
+                cursor: pointer;
+            }
+
+            #settings-sidebar > .settings-sidebar-body {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            #settings-sidebar > .settings-sidebar-body > button {
+                margin: 5px 0;
+                background: white;
+                padding: 10px 5px;
+                cursor: pointer;
             }
         </style>
     </head>
@@ -88,7 +118,7 @@
         </a>
         <!-- this is the date -->
         <section id="dateOnSide" class="unselectable">
-            This is the date on the left side
+            <!--date will be here -->
         </section>
 
         <!-- This is the instruction button -->
@@ -116,6 +146,24 @@
                 <p class="message_close">Click anywhere to close instruction</p>
             </div>
         </section>
+        <section id="settings">
+            <button id="settings-button" onclick="toggleSettings()">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <div id="settings-sidebar" style="display: none">
+                <h2>
+                    Settings
+                    <i class="fa-solid fa-xmark" onclick="toggleSettings()"></i>
+                </h2>
+                <div class="settings-sidebar-body">
+                    <button id="downloadAllText">
+                        Download All <i class="fa-solid fa-download"></i>
+                    </button>
+                    <!-- <button>Download All</button>
+                    <button>Download All</button> -->
+                </div>
+            </div>
+        </section>
 
         <script>
             //this is for overlay
@@ -127,13 +175,16 @@
                 document.getElementById("overlay").style.display = "none";
             }
 
-            const dt = new Date();
-            const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+            function toggleSettings() {
+                const settingsButton =
+                    document.getElementById("settings-sidebar");
 
-            document.querySelector("#dateOnSide").innerHTML = `
-            <span>${weekday[dt.getDay()]}</span>
-            <span>${dt.getUTCMonth() + 1 + "-" + dt.getDate()}</span>
-                `;
+                if (settingsButton.style.display === "none") {
+                    settingsButton.style.display = "block";
+                } else {
+                    settingsButton.style.display = "none";
+                }
+            }
         </script>
     </body>
 </html>

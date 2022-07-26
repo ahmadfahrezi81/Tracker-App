@@ -80,6 +80,7 @@ div#heading{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-right: 2em;
 }
 
 div#input-generate-container{
@@ -547,4 +548,26 @@ background: #4b6af4;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+/* date on side */
+#dateOnSide {
+    position: fixed;
+    top: 50%;
+    left: 42px;
+    font-weight: 500;
+    transform: translate(-50%, -50%);
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+#dateOnSide span:first-child {
+    font-weight: 800;
+    font-size: 1.1em;
+}
+
+@media (max-width: 576px) {
+    #dateOnSide {
+        display: none;
+    }
 }

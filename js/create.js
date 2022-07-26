@@ -369,3 +369,13 @@ function checkPattern(temp) {
         )
     );
 }
+
+export function dateOnSide() {
+    const dt = new Date();
+    const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+    document.querySelector("#dateOnSide").innerHTML = `
+    <span>${weekday[dt.getDay()]}</span>
+    <span>${dt.getUTCMonth() + 1 + "-" + dt.getDate()}</span>
+`;
+}
