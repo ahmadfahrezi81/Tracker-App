@@ -17,9 +17,9 @@
         <script type="module" src="../js/main.js" defer></script>
         <style>
             #settings {
-                position: fixed;
-                left: 20px;
-                top: 18%;
+                /* position: fixed;
+                bottom: 20px;
+                left: 20px; */
             }
 
             #settings-button {
@@ -27,6 +27,9 @@
                 margin-left: 0.2rem;
                 background: #fff;
                 border: none;
+                position: fixed;
+                bottom: 20px;
+                left: 22px;
             }
 
             #settings-button > i:first-child {
@@ -34,7 +37,7 @@
             }
 
             #settings-sidebar {
-                z-index: 3;
+                z-index: 1;
                 position: fixed;
                 background: aliceblue;
                 left: 0;
@@ -123,9 +126,9 @@
 
         <!-- This is the instruction button -->
         <section>
-            <button class="help" title="instruction" onclick="onOverlay()">
+            <!-- <button class="help" title="instruction" onclick="onOverlay()">
                 <i class="fa-solid fa-chalkboard-user"></i>
-            </button>
+            </button> -->
             <div id="overlay" class="unselectable" onclick="offOverlay()">
                 <h1>Instruction</h1>
                 <p>
@@ -159,8 +162,13 @@
                     <button id="downloadAllText">
                         Download All <i class="fa-solid fa-download"></i>
                     </button>
-                    <!-- <button>Download All</button>
-                    <button>Download All</button> -->
+                    <button
+                        class="help"
+                        title="instruction"
+                        onclick="onOverlay()"
+                    >
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </button>
                 </div>
             </div>
         </section>
@@ -175,7 +183,7 @@
                 document.getElementById("overlay").style.display = "none";
             }
 
-            function toggleSettings() {
+            function toggleSettings(id) {
                 const settingsButton =
                     document.getElementById("settings-sidebar");
 
