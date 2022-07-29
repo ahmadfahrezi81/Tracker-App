@@ -77,6 +77,26 @@ export function shrinkTxtArea(dataID) {
     );
 
     if (shrkButton != null) {
+        window.onkeydown = function (event) {
+            if (event.keyCode == 27) {
+                textareaOverlay.classList.remove("txtarea-overlay-show");
+                textareaOverlay.classList.add("txtarea-overlay-hidden");
+                shrkButton.classList.add("btn-hidden");
+                expButton.classList.remove("btn-hidden");
+                dwnButton.classList.add("dwn-btn");
+                dwnButton.classList.remove("dwn-btn-big");
+                document
+                    .querySelector(
+                        `.textarea-overlay-title[data-id="${dataID}"]`
+                    )
+                    .classList.add("textarea-overlay-title-hidden");
+                document.querySelector(
+                    `.textarea[data-id="text-val${dataID}"]`
+                ).style.cssText =
+                    "padding: 10px 40px 10px 10px; font-size: 1.0em;";
+            }
+        };
+
         shrkButton.addEventListener(
             "click",
             () => {
@@ -100,5 +120,3 @@ export function shrinkTxtArea(dataID) {
         );
     }
 }
-
-export function renameInExpandedOverlay(newName) {}

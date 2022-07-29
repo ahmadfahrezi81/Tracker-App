@@ -69,6 +69,62 @@
                 padding: 10px 5px;
                 cursor: pointer;
             }
+
+            /* instruction css*/
+            .help {
+                background-color: aliceblue;
+                padding: 10px;
+                position: fixed;
+                border: none;
+                border-radius: 5px;
+                transition: all ease 0.3s;
+                bottom: 20px;
+                left: 20px;
+                cursor: pointer;
+            }
+
+            .help:hover {
+                background-color: rgb(215, 237, 255);
+            }
+
+            .help:hover > i {
+                color: rgb(19, 16, 16);
+            }
+
+            .help > i {
+                font-size: 1.5em;
+            }
+
+            #overlay {
+                position: fixed;
+                display: none;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: white;
+                z-index: 2;
+                cursor: pointer;
+                padding: 50px 10vw;
+                box-sizing: border-box;
+            }
+
+            .message_close {
+                position: absolute;
+                bottom: 50px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            @media (max-width: 576px) {
+                #overlay {
+                    font-size: 0.9em;
+                }
+            }
         </style>
     </head>
     <body>
@@ -125,11 +181,8 @@
         </section>
 
         <!-- This is the instruction button -->
-        <section>
-            <!-- <button class="help" title="instruction" onclick="onOverlay()">
-                <i class="fa-solid fa-chalkboard-user"></i>
-            </button> -->
-            <div id="overlay" class="unselectable" onclick="offOverlay()">
+        <section id="overlay" class="unselectable" onclick="toggleOverlay()">
+            <div>
                 <h1>Instruction</h1>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -162,11 +215,7 @@
                     <button id="downloadAllText">
                         Download All <i class="fa-solid fa-download"></i>
                     </button>
-                    <button
-                        class="help"
-                        title="instruction"
-                        onclick="onOverlay()"
-                    >
+                    <button class="help" onclick="toggleOverlay()">
                         <i class="fa-solid fa-chalkboard-user"></i>
                     </button>
                 </div>
@@ -174,13 +223,14 @@
         </section>
 
         <script>
-            //this is for overlay
-            function onOverlay() {
-                document.getElementById("overlay").style.display = "block";
-            }
+            function toggleOverlay() {
+                const overlay = document.getElementById("overlay");
 
-            function offOverlay() {
-                document.getElementById("overlay").style.display = "none";
+                if (overlay.style.display === "none") {
+                    overlay.style.display = "block";
+                } else {
+                    overlay.style.display = "none";
+                }
             }
 
             function toggleSettings(id) {

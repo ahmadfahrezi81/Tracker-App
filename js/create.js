@@ -10,7 +10,7 @@ export function createBox() {
     const input = document.querySelector("#inputText");
 
     // if 'Task Name' is empty
-    if (isEmptyOrSpaces()) {
+    if (isEmptyOrSpaces(input.value)) {
         const errMsgBox = document.querySelector("#errMsgBox");
         const closeErrMsg = document.querySelector("#errCloseButton");
 
@@ -122,14 +122,8 @@ function emojiPicker(count) {
 }
 //----------------Testing Until here----------
 
-function isEmptyOrSpaces() {
-    const input = document.querySelector("#inputText");
-
-    return (
-        input.value.length === 0 ||
-        input.value == null ||
-        input.value.trim() === ""
-    );
+function isEmptyOrSpaces(temp) {
+    return temp.length === 0 || temp == null || temp.trim() === "";
 }
 
 function stopwatch(count) {
@@ -304,12 +298,12 @@ function rightClickMenu(count) {
             document.querySelector("#rename").addEventListener("click", () => {
                 let newName = prompt("Enter new name for your task: ");
 
-                if (!isEmptyOrSpaces()) {
+                if (!isEmptyOrSpaces(newName)) {
                     //rename on the itemHeadDisplay
                     itemHeadDisplay.firstElementChild.innerHTML = newName; //fix this a little
 
                     //rename on the H1 overlay
-                    textareaOverlayTitle.innerHTML = newName;
+                    textareaOverlayTitle.innerHTML = newName + " | notes";
                 } else {
                     alert("Task name cannot be empty");
                 }
