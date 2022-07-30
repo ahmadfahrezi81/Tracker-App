@@ -15,117 +15,6 @@
         />
         <link rel="icon" type="image/png" href="../image/timer.png" />
         <script type="module" src="../js/main.js" defer></script>
-        <style>
-            #settings {
-                /* position: fixed;
-                bottom: 20px;
-                left: 20px; */
-            }
-
-            #settings-button {
-                cursor: pointer;
-                margin-left: 0.2rem;
-                background: #fff;
-                border: none;
-                position: fixed;
-                bottom: 20px;
-                left: 22px;
-            }
-
-            #settings-button > i:first-child {
-                font-size: 1.8em;
-            }
-
-            #settings-sidebar {
-                z-index: 1;
-                position: fixed;
-                background: aliceblue;
-                left: 0;
-                top: 0;
-                bottom: 0;
-                padding: 20px;
-                width: 180px;
-            }
-
-            #settings-sidebar > h2 {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            #settings-sidebar > h2 > i {
-                cursor: pointer;
-            }
-
-            #settings-sidebar > .settings-sidebar-body {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-            }
-
-            #settings-sidebar > .settings-sidebar-body > button {
-                margin: 5px 0;
-                background: white;
-                padding: 10px 5px;
-                cursor: pointer;
-            }
-
-            /* instruction css*/
-            .help {
-                background-color: aliceblue;
-                padding: 10px;
-                position: fixed;
-                border: none;
-                border-radius: 5px;
-                transition: all ease 0.3s;
-                bottom: 20px;
-                left: 20px;
-                cursor: pointer;
-            }
-
-            .help:hover {
-                background-color: rgb(215, 237, 255);
-            }
-
-            .help:hover > i {
-                color: rgb(19, 16, 16);
-            }
-
-            .help > i {
-                font-size: 1.5em;
-            }
-
-            #overlay {
-                position: fixed;
-                display: none;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: white;
-                z-index: 2;
-                cursor: pointer;
-                padding: 50px 10vw;
-                box-sizing: border-box;
-            }
-
-            .message_close {
-                position: absolute;
-                bottom: 50px;
-                left: 0;
-                right: 0;
-                margin: 0 auto;
-                text-align: center;
-            }
-
-            @media (max-width: 576px) {
-                #overlay {
-                    font-size: 0.9em;
-                }
-            }
-        </style>
     </head>
     <body>
         <div id="container">
@@ -181,24 +70,22 @@
         </section>
 
         <!-- This is the instruction button -->
-        <section id="overlay" class="unselectable" onclick="toggleOverlay()">
+        <section
+            id="overlay"
+            class="unselectable"
+            onclick="toggleOverlay()"
+            style="display: none"
+        >
             <div>
                 <h1>Instruction</h1>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sequi ad corrupti perferendis quaerat provident, sapiente
-                    sint possimus consequuntur soluta magni, explicabo
-                    necessitatibus aliquam, ex mollitia! Recusandae dolor
-                    aperiam inventore velit!
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Sequi ad corrupti perferendis quaerat provident, sapiente
-                    sint possimus consequuntur soluta magni, explicabo
-                    necessitatibus aliquam, ex mollitia! Recusandae dolor
-                    aperiam inventore velit!
-                </p>
-
+                <h3>Shortcut:</h3>
+                <ul>
+                    <li>
+                        <kbd>UNSUPPORTED</kbd> Open TextArea <kbd>Ctrl</kbd> +
+                        <kbd>O</kbd>
+                    </li>
+                    <li>Close TextArea <kbd>Esc</kbd></li>
+                </ul>
                 <p class="message_close">Click anywhere to close instruction</p>
             </div>
         </section>
@@ -215,8 +102,8 @@
                     <button id="downloadAllText">
                         Download All <i class="fa-solid fa-download"></i>
                     </button>
-                    <button class="help" onclick="toggleOverlay()">
-                        <i class="fa-solid fa-chalkboard-user"></i>
+                    <button id="help" onclick="toggleOverlay()">
+                        Instruction <i class="fa-solid fa-chalkboard-user"></i>
                     </button>
                 </div>
             </div>

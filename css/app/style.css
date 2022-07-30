@@ -152,8 +152,8 @@ div#errMsgBox{
 }
 
 .emoji-menu {
-    width: fit-content;
-    height: fit-content;
+    /* width: fit-content; */
+    /* height: fit-content; */
     background: white;
     position: absolute;
     z-index: 4;
@@ -165,13 +165,16 @@ div#errMsgBox{
     flex-direction: column;
     align-items: center;
     padding: 5px 10px;
+    max-height: 240px;
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
 }
 
 .emoji-menu>div {
     margin: 5px 0;
-    background-color: aliceblue;
-    width: 40px;
-    height: 40px;
+    background-color: rgb(176, 218, 255);
+    min-width: 40px;
+    min-height: 40px;
     border-radius: 5px;
     display: flex;
     justify-content: center;
@@ -183,7 +186,7 @@ div#errMsgBox{
 }
 
 .emoji-menu>div>span {
-    display: none;
+    display: inline-block;
     position: absolute;
     left: 115%;
     font-size: 1.25rem;
@@ -192,9 +195,9 @@ div#errMsgBox{
     letter-spacing: 0.7px;
 }
 
-.emoji-menu>div:hover>span {
+/* .emoji-menu>div:hover>span {
     display: block;
-}
+} */
 
 
 .item-head-display{

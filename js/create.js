@@ -50,7 +50,7 @@ export function createBox() {
                         <div class="item-body-textarea">
                             <div class="textarea-overlay txtarea-overlay-hidden" data-id="${count}">
                                 <h1 data-id="${count}" class="textarea-overlay-title textarea-overlay-title-hidden">${input.value} | notes</h1>
-                                <textarea class="textarea" data-id="text-val${count}" cols="55" rows="8" placeholder="📄 Write notes here"
+                                <textarea class="textarea" data-id="text-val${count}" cols="55" rows="8" placeholder="📄 Write notes here\n❌ Esc to close"
                                 onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'    '+v.substring(e);this.selectionStart=this.selectionEnd=s+4;return false;}"
                                 ></textarea>
                                 <button class="exp-btn" data-id="${count}"><i class="fa-solid fa-maximize"></i></button>
@@ -99,6 +99,8 @@ function emojiPicker(count) {
             <div>🏀<span>Exercise</span></div>
             <div>🎮<span>Break</span></div>
             <div>🧹<span>Chore</span></div>
+            <div>🎯<span>Target</span></div>
+            <div>🚀<span>Rocket</span></div>
         `;
 
         emojiCircle.append(emojiMenu);
@@ -373,3 +375,9 @@ export function dateOnSide() {
     <span>${dt.getUTCMonth() + 1 + "-" + dt.getDate()}</span>
 `;
 }
+
+window.onkeydown = function (event) {
+    if (event.ctrlKey && event.key === "z") {
+        console.log("logo");
+    }
+};

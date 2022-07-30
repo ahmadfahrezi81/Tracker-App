@@ -44,6 +44,12 @@ export function expandTxtArea(dataID) {
     );
 
     if (expButton != null) {
+        window.onkeydown = function (event) {
+            if (event.ctrlKey && event.key === "z") {
+                console.log("hi");
+            }
+        };
+
         expButton.addEventListener(
             "click",
             () => {
