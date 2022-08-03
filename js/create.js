@@ -93,14 +93,15 @@ function emojiPicker(count) {
         const emojiMenu = document.createElement("div");
         emojiMenu.classList.add("emoji-menu");
         emojiMenu.innerHTML = `
-            <div>👨‍💼<span>Work</span></div>
             <div>📚<span>Homework</span></div>
             <div>💻<span>Code</span></div>
-            <div>🏀<span>Exercise</span></div>
-            <div>🎮<span>Break</span></div>
+            <div>🏀<span>Sport</span></div>
+            <div>🎮<span>Game</span></div>
             <div>🧹<span>Chore</span></div>
             <div>🎯<span>Target</span></div>
             <div>🚀<span>Rocket</span></div>
+            <div>💪<span>Workout</span></div>
+            <div>📒<span>Todo</span></div>
         `;
 
         emojiCircle.append(emojiMenu);
@@ -376,8 +377,11 @@ export function dateOnSide() {
 `;
 }
 
+//testing key shortcut
 window.onkeydown = function (event) {
     if (event.ctrlKey && event.key === "z") {
         console.log("logo");
     }
 };
+
+//testing asking if want to quit

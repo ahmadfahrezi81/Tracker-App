@@ -9,3 +9,8 @@ generateButton.addEventListener("click", () => {
     createBox();
     accordian();
 });
+
+//prevent accidental closing
+window.onbeforeunload = function () {
+    return "";
+};
